@@ -1,6 +1,11 @@
 // function - Apply polyfill
 
 Function.prototype.myBind = function(context, args) {
+
+    if (typeof this !== "function") {
+        throw new TypeError("Function.prototype.myApply - what is trying to be called is not callable");
+    }
+
     let currentContext = context || globalThis;
     let randomProp = Math.random();
     while( currentContext[randomProp] !== undefined ){
